@@ -1,0 +1,56 @@
+# Zend Framework Facebook Library
+* Author:  Erick Rojas (erick@erickthered.com)
+* version 3.1.1
+* license: Apache 
+
+The purpose of the Zend Framework Facebook Library is to provide a simple (and standarized) way
+in which you can use the Facebook PHP SDK classes  within the recommended ZF project folder
+hierarchy.
+
+It's based on the Official Facebook PHP SDK. It has been modified so that all classes follow ZF
+naming guidelines and a Resource has been created so that you can easily set your params from
+application.ini
+
+# INSTALLATION
+
+Simply, copy the Facebook folder to your ZF library folder and add the following lines to your
+application/configs/application.ini file replacing APP_ID and APP_SECRET with your own.
+
+autoloadernamespaces[] = "Facebook_"
+pluginPaths.Facebook_Resource = APPLICATION_PATH "/../library/Facebook/Resource"
+resources.facebook.appid = "APP_ID"
+resources.facebook.secret = "APP_SECRET"
+
+# REQUIREMENTS
+
+- Zend Framework 1.11+
+- PHP 5.2 or newer.
+
+# USAGE
+
+From any Controller or Model, you can get the Facebook_Facebook object by reading the registry
+key 'Facebook', after doing so you can call any of the available methods from Facebook Docs.
+
+# EXAMPLE
+
+$facebook = Zend_Registry::get('Facebook');
+$user = $facebook->getUser();
+		
+if ($user) {
+	try {
+		// Proceed knowing you have a logged in user who's authenticated.
+		$user_profile = $facebook->api('/me');
+	} catch (Facebook_Api_Exception $e) {
+		$user = null;
+	}
+}
+		
+// Login or logout url will be needed depending on current user state.
+if ($user) {
+	$logoutUrl = $facebook->getLogoutUrl();
+	$this->view->link = $logoutUrl;
+	$this->view->user = $user_profile;
+} else {
+	$loginUrl = $facebook->getLoginUrl(array('scope' => 'email,publish_stream'));
+	$this->view->link = $loginUrl;
+}
