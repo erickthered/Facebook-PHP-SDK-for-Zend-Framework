@@ -7,7 +7,7 @@ class Facebook_Resource_Facebook extends Zend_Application_Resource_ResourceAbstr
 	const DEFAULT_REGISTRY_KEY = 'Facebook';
 	
 	protected $_appid;
-	protected $_secret;	
+	protected $_appsecret;	
 	protected $_perms = "email,publish_stream";
 	
 	/**
@@ -25,7 +25,7 @@ class Facebook_Resource_Facebook extends Zend_Application_Resource_ResourceAbstr
 	 */
 	public function setSecret($value)
 	{
-		$this->_secret = $value;
+		$this->_appsecret = $value;
 	}
 	
 	/**
@@ -42,10 +42,10 @@ class Facebook_Resource_Facebook extends Zend_Application_Resource_ResourceAbstr
 	 * @see Zend_Application_Resource_Resource::init()
 	 */
 	public function init() {
-		if ($this->_appid && $this->_secret) {
+		if ($this->_appid && $this->_appsecret) {
 			$facebook = new Facebook_Facebook(array (
 				'appId' => $this->_appid,
-				'secret' => $this->_secret,
+				'secret' => $this->_appsecret,
 				'req_perms' => $this->_perms,
 				'cookie' => true
 			));

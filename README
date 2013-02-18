@@ -19,7 +19,7 @@ application/configs/application.ini file replacing APP_ID and APP_SECRET with yo
 autoloadernamespaces[] = "Facebook_"
 pluginPaths.Facebook_Resource = APPLICATION_PATH "/../library/Facebook/Resource"
 resources.facebook.appid = "APP_ID"
-resources.facebook.secret = "APP_SECRET"
+resources.facebook.appsecret = "APP_SECRET"
 
 # REQUIREMENTS
 
