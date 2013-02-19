@@ -8,7 +8,7 @@ class Facebook_Resource_Facebook extends Zend_Application_Resource_ResourceAbstr
 	
 	protected $_appid;
 	protected $_appsecret;	
-	protected $_perms = "email,publish_stream";
+	protected $_perms = "email,read_stream,publish_stream";
 	
 	/**
 	 * Enter description here ...
