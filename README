@@ -1,6 +1,7 @@
 # Zend Framework Facebook Library
 * Author:  Erick Rojas (erick@erickthered.com)
-* version 3.1.1
+*          Emidio Bianco
+* version 3.2.0
 * license: Apache 
 
 The purpose of the Zend Framework Facebook Library is to provide a simple (and standarized) way
@@ -19,7 +20,7 @@ application/configs/application.ini file replacing APP_ID and APP_SECRET with yo
 autoloadernamespaces[] = "Facebook_"
 pluginPaths.Facebook_Resource = APPLICATION_PATH "/../library/Facebook/Resource"
 resources.facebook.appid = "APP_ID"
-resources.facebook.secret = "APP_SECRET"
+resources.facebook.appsecret = "APP_SECRET"
 
 # REQUIREMENTS
 
@@ -54,3 +55,10 @@ if ($user) {
 	$loginUrl = $facebook->getLoginUrl(array('scope' => 'email,publish_stream'));
 	$this->view->link = $loginUrl;
 }
+
+
+# TODO:
+
+- Storage Interface
+- Storage with Zend_Db_Table implementation
+- Storage with Doctrine2 ORM
